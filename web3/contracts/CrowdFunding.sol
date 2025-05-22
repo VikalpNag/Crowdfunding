@@ -47,7 +47,22 @@ contract Crowdfunding {
         return numberOfCampaigns - 1;
     }
 
-    function donateToCampaign() {}
+    function donateToCampaign(uint256 _id) public payable {
+        uint256 amount = msg.value; //value will be sent from frontend.
+        //Payable is a keyword that describes that amount of ether being sent
+
+        Campaign storage campaign = campaigns[_id];
+
+        campaign.donators.push(msg.sender);
+        campaign.donations.push(amount);
+
+        (bool sent, ) = payable(campaign.owner).call{value: amount}("");
+
+        if (sent) {
+            campaign.amountCollected = campaign.amountCollected + amount;
+        }
+    }
+
     function getDonators() {}
     function getCampaigns() {}
 }
