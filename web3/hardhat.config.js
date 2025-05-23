@@ -1,5 +1,6 @@
 require("@matterlabs/hardhat-zksync-solc");
 require("@matterlabs/hardhat-zksync-verify");
+require('dotenv').config();
 
 
 /** @type import('hardhat/config').HardhatUserConfig */
@@ -44,6 +45,14 @@ module.exports = {
         enabled: true,
         runs: 200,
       },
+    },
+  },
+  defaultNetwork: "sepolia",
+  networks: {
+    hardhat: {},
+    sepolia: {
+      url: "hwss://ethereum-sepolia-rpc.publicnode.com",
+      accounts: process.env.PRIVATE_KEY ? [`0x${process.env.PRIVATE_KEY}`] : [],
     },
   },
 };
