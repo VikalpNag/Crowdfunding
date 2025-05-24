@@ -8,6 +8,7 @@ const Icon = ({ styles, name, imgUrl, isActive, disabled, handleClick }) => {
       } flex justify-center items-center ${
         !disabled && "cursor-pointer"
       } ${styles}`}
+      onClick={handleClick}
     >
       {!isActive ? (
         <img src={imgUrl} alt="fund_logo" className="w-1/2 h-1/2" />
