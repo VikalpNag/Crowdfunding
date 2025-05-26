@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
 import App from "./App.tsx";
 import "./index.css";
-import { StateContextProvider } from "./context/index.js";
+import { StateContextProvider } from "./context/index.jsx";
 
 // Ensure 'rootElement' is non-null using type assertion
 const rootElement = document.getElementById("root") as HTMLElement;
