@@ -24,6 +24,7 @@ const CreateCampaign = () => {
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     checkIfImage(form.image, async (exists) => {
       if (exists) {
         setIsLoading(true);
@@ -39,8 +40,7 @@ const CreateCampaign = () => {
       }
     });
 
-    e.preventDefault();
-    console.log(form);
+    // console.log(form);
   };
 
   return (

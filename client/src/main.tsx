@@ -15,7 +15,11 @@ const root = ReactDOM.createRoot(rootElement);
 
 root.render(
   <React.StrictMode>
-    <ThirdwebProvider desiredChainId={ChainId.Sepolia}>
+    <ThirdwebProvider
+      activeChain="sepolia"
+      clientId="e80953cef0f3d220f954952879910880"
+      desiredChainId={11155111}
+    >
       <Router>
         <StateContextProvider>
           <App />
