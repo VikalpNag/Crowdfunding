@@ -28,6 +28,7 @@ export const StateContextProvider = ({
   const address = useAddress();
   const connect = useMetamask();
 
+  //Create campaign
   const publishCampaign = async (form) => {
     try {
       const data = await contract.call("createCampaign", [
@@ -44,9 +45,21 @@ export const StateContextProvider = ({
     }
   };
 
+  //get Campaign
+  const getCampaigns = async () => {
+    const campaigns = await contract.call("getCampaigns");
+    console.log(campaigns);
+  };
+
   return (
     <StateContext.Provider
-      value={{ address, contract, connect, createCampaign: publishCampaign }}
+      value={{
+        address,
+        contract,
+        connect,
+        createCampaign: publishCampaign,
+        getCampaigns,
+      }}
     >
       {children}
     </StateContext.Provider>
