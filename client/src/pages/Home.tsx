@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useStateContext } from "../context";
+import { DisplayCampaigns } from "../components";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -7,7 +8,24 @@ const Home = () => {
 
   const { address, contract, getCampaigns } = useStateContext();
 
-  return <div>Home</div>;
+  const fetchCampaigns = async () => {
+    setIsLoading(true);
+    const data = await getCampaigns();
+    setCampaigns(data);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    if (contract) fetchCampaigns();
+  }, [address, campaigns]);
+
+  return (
+    <DisplayCampaigns
+      title="All campaigns"
+      isLoading={isLoading}
+      campaigns={campaigns}
+    />
+  );
 };
 
 export default Home;
