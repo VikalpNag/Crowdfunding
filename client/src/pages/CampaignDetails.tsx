@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ethers } from "ethers";
 
 import { useStateContext } from "../context";
-import { CustomButton } from "../components";
+import { CustomButton, Loader } from "../components";
 
 import CountBox from "../components/CountBox";
 import { calculateBarPercentage, daysLeft } from "../utils";
@@ -41,7 +40,7 @@ const CampaignDetails = () => {
 
   return (
     <div>
-      {isLoading && "<Loader />"}
+      {isLoading && <Loader />}
 
       <div className="w-full flex md:flex-row flex-col mt-10 gap-[30px]">
         <div className="flex-1 flex-col">
