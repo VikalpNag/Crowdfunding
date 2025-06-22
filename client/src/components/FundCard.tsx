@@ -11,6 +11,15 @@ const FundCard = ({
   amountCollected,
   image,
   handleClick,
+}: {
+  owner: any;
+  title: String;
+  description: String;
+  target: any;
+  deadline: any;
+  amountCollected: any;
+  image: any;
+  handleClick: any;
 }) => {
   const remaininfDays = daysLeft(deadline);
   return (

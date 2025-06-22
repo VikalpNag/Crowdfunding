@@ -1,6 +1,18 @@
 import React from "react";
 
-const CustomButton = ({ btnType, title, handleClick, styles }) => {
+type CustomButtonProps = {
+  btnType?: "button" | "submit" | "reset";
+  title: string;
+  handleClick?: () => void;
+  styles?: string;
+};
+
+const CustomButton = ({
+  btnType = "button",
+  title,
+  handleClick,
+  styles = "",
+}: CustomButtonProps) => {
   return (
     <button
       type={btnType}

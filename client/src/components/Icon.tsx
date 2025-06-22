@@ -1,6 +1,20 @@
 import React from "react";
 
-const Icon = ({ styles, name, imgUrl, isActive, disabled, handleClick }) => {
+const Icon = ({
+  styles,
+  name,
+  imgUrl,
+  isActive,
+  disabled,
+  handleClick,
+}: {
+  styles: String;
+  name: String;
+  imgUrl: any;
+  isActive: any;
+  disabled: Boolean;
+  handleClick: any;
+}) => {
   return (
     <div
       className={`w-[48px] h-[48px] rounded-[10px] ${

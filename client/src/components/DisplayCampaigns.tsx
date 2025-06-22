@@ -1,12 +1,20 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { laoder, loader } from "../assets";
+import { loader } from "../assets";
 import FundCard from "./FundCard";
 
-const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
+const DisplayCampaigns = ({
+  title,
+  isLoading,
+  campaigns,
+}: {
+  title: any;
+  isLoading: Boolean;
+  campaigns: any;
+}) => {
   const navigate = useNavigate();
 
-  const handleNavigate = (campaign) => {
+  const handleNavigate = (campaign: any) => {
     navigate(`/campaign-details/${campaign.title}`, { state: campaign });
   };
   return (
@@ -30,7 +38,7 @@ const DisplayCampaigns = ({ title, isLoading, campaigns }) => {
         )}
         {!isLoading &&
           campaigns.length > 0 &&
-          campaigns.map((campaign) => (
+          campaigns.map((campaign: any) => (
             <FundCard
               key={campaign.id}
               {...campaign}

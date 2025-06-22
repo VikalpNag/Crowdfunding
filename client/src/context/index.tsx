@@ -6,12 +6,22 @@ import {
   useMetamask,
   useContractWrite,
 } from "@thirdweb-dev/react";
-import { ethers } from "ethers";
-import { EditionMetadataWithOwnerOutputSchema } from "@thirdweb-dev/sdk";
+import { ethers, ContractInterface } from "ethers";
 
-const StateContext = createContext();
+interface StateContextType {
+  address: string | undefined;
+  contract: ContractInterface | any;
+  connect: () => void;
+  createCampaign: (form: any) => Promise<void>;
+  getCampaigns: () => Promise<any[]>;
+  getUserCampaigns: () => Promise<any[]>;
+  donate: (pId: number, amount: string) => Promise<any>;
+  getDonations: (pId: number) => Promise<any[]>;
+}
 
-export const StateContextProvider = ({ children }) => {
+const StateContext = createContext<StateContextType | undefined>(undefined);
+
+export const StateContextProvider = ({ children }: { children: any }) => {
   const { contract } = useContract(
     "0xbB8821Cb6E0D17a5Da1Db758c1cfdE9748C32c6d",
     "custom",
@@ -25,7 +35,7 @@ export const StateContextProvider = ({ children }) => {
   const address = useAddress();
   const connect = useMetamask();
 
-  const publishCampaign = async (form) => {
+  const publishCampaign = async (form: any) => {
     try {
       const data = await createCampaign({
         args: [
@@ -47,7 +57,7 @@ export const StateContextProvider = ({ children }) => {
   const getCampaigns = async () => {
     const campaigns = await contract.call("getCampaigns");
 
-    const parsedCampaings = campaigns.map((campaign, i) => ({
+    const parsedCampaings = campaigns.map((campaign: any, i: any) => ({
       owner: campaign.owner,
       title: campaign.title,
       description: campaign.description,
@@ -67,13 +77,13 @@ export const StateContextProvider = ({ children }) => {
     const allCampaigns = await getCampaigns();
 
     const filteredCampaigns = allCampaigns.filter(
-      (campaign) => campaign.owner === address
+      (campaign: any) => campaign.owner === address
     );
 
     return filteredCampaigns;
   };
 
-  const donate = async (pId, amount) => {
+  const donate = async (pId: any, amount: any) => {
     const data = await contract.call("donateToCampaign", [pId], {
       value: ethers.utils.parseEther(amount),
     });
